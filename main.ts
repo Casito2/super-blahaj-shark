@@ -64,6 +64,9 @@ function Empezar_nivel (nºmonedas: number) {
     }
     scene.cameraFollowSprite(tiburon)
 }
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
+    daño()
+})
 function daño () {
     info.changeLifeBy(-1)
     tiles.placeOnRandomTile(tiburon, assets.tile`myTile1`)
@@ -859,7 +862,7 @@ info.setLife(3)
 info.setScore(0)
 nivel = 0
 game.onUpdate(function () {
-    if (tiburon.tileKindAt(TileDirection.Bottom, assets.tile`myTile`) || tiburon.y >= 1590) {
+    if (tiburon.y >= 1590) {
         daño()
     }
     if (!(controller.anyButton.isPressed())) {
